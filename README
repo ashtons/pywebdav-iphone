@@ -1,6 +1,12 @@
 PyWebDAV is a standards compliant WebDAV server and library written in Python
 
 
+iPhone Specific Changes - Sean Ashton
+-----------------------
+When streaming media to iOS clients the server is required to send back a Content-Range header with the request range of data.
+I've made the necessary changes to get streaming working with iOS devices including iPod, iPhone and iPad.
+
+
 DESCRIPTION
 -----------
 
