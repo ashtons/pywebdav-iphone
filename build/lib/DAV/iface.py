@@ -91,7 +91,7 @@ class dav_interface:
             raise DAV_NotFound
         mname=prefix+"_"+propname.replace('-', '_')
         try:
-            m=getattr(self,mname)
+            m=getattr(self,mname)            
             r=m(uri)
             return r
         except AttributeError:

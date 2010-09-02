@@ -103,12 +103,11 @@ class FilesystemHandler(dav_interface):
         self.baseuri = uri
 
     def uri2local(self,uri):
-        """ map uri in baseuri and local part """
-
+        """ map uri in baseuri and local part """      
         uparts=urlparse.urlparse(uri)
         fileloc=uparts[2][1:]
         filename=os.path.join(self.directory,fileloc)
-        filename=os.path.normpath(filename)
+        filename=os.path.normpath(filename)       
         return filename
 
     def local2uri(self,filename):
@@ -139,14 +138,13 @@ class FilesystemHandler(dav_interface):
                     filelist.append(self.local2uri(newloc))
 
                 log.info('get_childs: Childs %s' % filelist)
-
         return filelist
 
     def get_data(self,uri, range = None):
         """ return the content of an object """
         path=self.uri2local(uri)
         if os.path.exists(path):
-            if os.path.isfile(path):
+            if os.path.isfile(path):               
                 file_size = os.path.getsize(path)
                 if range == None:
                     fp=open(path,"r")

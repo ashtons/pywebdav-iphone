@@ -267,10 +267,14 @@ class DAVRequestHandler(AuthServer.BasicAuthRequestHandler, LockManager):
         # send the data
         if with_body is False:
             data = None
-            
+       
         headers['Keep-Alive'] = 'timeout=30, max=86'
         headers['Connection'] = 'Keep-Alive'
-        headers['Content-Range'] = 'bytes %d-%d/%d' % (data.startRange, data.endRange, data.totalSize)
+        try:
+            headers['Content-Range'] = 'bytes %d-%d/%d' % (data.startRange, data.endRange, data.totalSize)
+        except:
+            print ""
+        
         self.send_body(data, status_code, None, None, content_type, headers)
 
         return status_code
@@ -323,7 +327,7 @@ class DAVRequestHandler(AuthServer.BasicAuthRequestHandler, LockManager):
         uri = urllib.unquote(uri)
 
         pf = PROPFIND(uri, dc, self.headers.get('Depth', 'infinity'), body)
-
+        
         try:
             DATA = '%s\n' % pf.createResponse()
         except DAV_Error, (ec,dd):

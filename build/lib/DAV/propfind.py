@@ -208,7 +208,7 @@ class PROPFIND:
         This will simply format the propnames list.
         propnames should have the format {NS1 : [prop1, prop2, ...], NS2: ...}
 
-        """
+        """       
         re=doc.createElement("D:response")
 
         # write href information
